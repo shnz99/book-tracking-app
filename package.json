@@ -6,14 +6,14 @@
     "start": "webpack serve --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
     "test": "jest",
-    "ci": "npm install && npm audit && npm test && npm run build"
+    "ci": "npm install --legacy-peer-deps && npm audit && npm test && npm run build"
   },
   "dependencies": {
     "@react-navigation/native": "6.0.2",
     "@react-navigation/stack": "6.0.7",
     "core-js": "^3.23.3",
     "glob": "^9.0.0",
-    "react": "17.0.3",
+    "react": "17.0.2",
     "react-dom": "17.0.3",
     "react-native": "^0.68.0",
     "react-native-camera": "4.0.0",
