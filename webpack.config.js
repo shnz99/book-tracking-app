@@ -25,6 +25,7 @@ module.exports = (env, argv) => {
             options: {
               plugins: ['@babel/plugin-syntax-dynamic-import'],
               presets: ['@babel/preset-react'],
+
             },
           },
         },
