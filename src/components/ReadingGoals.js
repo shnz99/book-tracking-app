@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet } from 'react-native';
-import ProgressBar from 'react-native-progress/Bar';
+
+const CustomProgressBar = ({ progress }) => {
+  return (
+    <View style={styles.progressBarContainer}>
+      <View style={[styles.progressBar, { width: `${progress}%` }]} />
+    </View>
+  );
+};
 
 const ReadingGoals = () => {
   const [goals, setGoals] = useState([]);
@@ -55,7 +62,7 @@ const ReadingGoals = () => {
               maxLength={3}
             />
             <Text style={styles.percentage}>%</Text>
-            <ProgressBar progress={progress[item] ? progress[item] / 100 : 0} width={200} />
+            <CustomProgressBar progress={progress[item] ? progress[item] : 0} />
           </View>
         )}
         keyExtractor={(item, index) => index.toString()}
@@ -100,6 +107,18 @@ const styles = StyleSheet.create({
   percentage: {
     fontSize: 18,
     marginLeft: 5,
+  },
+  progressBarContainer: {
+    flex: 1,
+    height: 10,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 5,
+    overflow: 'hidden',
+    marginLeft: 10,
+  },
+  progressBar: {
+    height: '100%',
+    backgroundColor: '#4caf50',
   },
 });
 

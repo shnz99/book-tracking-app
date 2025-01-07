@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, FlatList, Alert, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import DraggableFlatList from 'react-native-draggable-flatlist';
 
 const BookList = ({ navigation }) => {
   const [books, setBooks] = useState([]);
@@ -36,14 +35,10 @@ const BookList = ({ navigation }) => {
     navigation.navigate('EditBook', { id });
   };
 
-  const renderItem = ({ item, drag, isActive }) => (
+  const renderItem = ({ item }) => (
     <TouchableOpacity
-      onLongPress={drag}
       onPress={() => navigation.navigate('BookDetails', { id: item.id })}
-      style={[
-        styles.bookItem,
-        { backgroundColor: isActive ? '#f0f0f0' : '#fff' }
-      ]}
+      style={styles.bookItem}
     >
       <Text style={styles.bookTitle}>{item.title}</Text>
       <Button title="Edit" onPress={() => handleEdit(item.id)} />
@@ -60,11 +55,10 @@ const BookList = ({ navigation }) => {
         value={searchTerm}
         onChangeText={handleSearch}
       />
-      <DraggableFlatList
+      <FlatList
         data={filteredBooks}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
-        onDragEnd={({ data }) => setBooks(data)}
       />
       <Button title="Add Book" onPress={() => navigation.navigate('AddBook')} />
     </View>

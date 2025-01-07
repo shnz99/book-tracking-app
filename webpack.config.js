@@ -8,7 +8,7 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   return {
-    mode: argv.mode,
+    mode: argv.mode || 'production',
     entry: './src/App.js',
     output: {
       filename: 'bundle.[contenthash].js',
@@ -31,6 +31,18 @@ module.exports = (env, argv) => {
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.(png|jpe?g|gif|svg)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[hash].[ext]',
+                outputPath: 'images',
+              },
+            },
+          ],
         },
       ],
     },
