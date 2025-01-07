@@ -1,0 +1,64 @@
+.edit-book {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-book h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.edit-book .form-group {
+  margin-bottom: 20px;
+}
+
+.edit-book .form-group label {
+  display: block;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.edit-book .form-group input[type="text"],
+.edit-book .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.edit-book button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.edit-book button:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 600px) {
+  .edit-book {
+    padding: 10px;
+  }
+
+  .edit-book button {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .edit-book .form-group input[type="text"],
+  .edit-book .form-group textarea {
+    padding: 10px;
+  }
+}

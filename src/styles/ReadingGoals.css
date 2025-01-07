@@ -1,0 +1,90 @@
+.reading-goals {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reading-goals h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.reading-goals .form-group {
+  margin-bottom: 20px;
+}
+
+.reading-goals .form-group label {
+  display: block;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.reading-goals .form-group input[type="text"],
+.reading-goals .form-group input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.reading-goals button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.reading-goals button:hover {
+  background-color: #45a049;
+}
+
+.progress-tracking {
+  margin-top: 20px;
+}
+
+.progress-tracking h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.progress-tracking .progress-bar {
+  width: 100%;
+  background-color: #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-tracking .progress-bar .progress {
+  height: 20px;
+  background-color: #4CAF50;
+  width: 0;
+  transition: width 0.3s;
+}
+
+.goal-achievements {
+  margin-top: 20px;
+}
+
+.goal-achievements h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.goal-achievements ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.goal-achievements li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
