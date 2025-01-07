@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "build:android": "expo build:android",
-    "build:ios": "expo build:ios"
+    "start": "webpack serve --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
+    "test": "jest"
   },
   "dependencies": {
-    "expo": "^40.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "0.63.4",
@@ -24,12 +20,19 @@
     "react-native-screens": "^2.15.2",
     "react-native-walkthrough-tooltip": "^1.1.8",
     "react-native-progress": "^4.1.2",
-    "react-native-camera": "^3.42.2",
-    "expo-status-bar": "~1.0.3",
-    "expo-app-loading": "^1.0.3"
+    "react-native-camera": "^3.42.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "style-loader": "^2.0.0",
+    "html-webpack-plugin": "^5.3.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "jest": "^27.0.1"
   },
   "private": true
 }
