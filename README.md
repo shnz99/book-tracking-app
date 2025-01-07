@@ -9,7 +9,6 @@ This mobile app allows users to track and manage the books they have read. Users
 - Categorize books
 - Add notes and rate books
 - Set reading goals and track progress
-- User authentication
 
 ## Setup and Run
 
@@ -31,17 +30,6 @@ This mobile app allows users to track and manage the books they have read. Users
    ```
 
 The app will be running on `http://localhost:3000`.
-
-## User Authentication Setup
-
-1. Install `react-native-firebase`:
-   ```
-   npm install @react-native-firebase/app @react-native-firebase/auth
-   ```
-2. Follow the setup instructions for `react-native-firebase` for both Android and iOS:
-   - [Android Setup](https://rnfirebase.io/#android-setup)
-   - [iOS Setup](https://rnfirebase.io/#ios-setup)
-3. Implement the authentication logic in the `src/components/Login.js` and `src/components/Signup.js` components.
 
 ## Running Tests
 
