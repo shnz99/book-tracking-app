@@ -21,14 +21,8 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Clean install dependencies
+        run: npm ci
 
-      - name: Run npm audit
-        run: npm audit
-
-      - name: Run tests
-        run: npm test
-
-      - name: Build project
-        run: npm run build
+      - name: Run CI script
+        run: npm run ci
