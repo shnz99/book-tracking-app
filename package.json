@@ -39,6 +39,8 @@
     "@babel/plugin-transform-optional-chaining": "^7.25.9",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
+    "@babel/preset-react-native": "^7.26.0",
     "@testing-library/react-native": "^13.0.0",
     "babel-loader": "^9.2.1",
     "clean-webpack-plugin": "^4.0.0",
@@ -59,14 +61,18 @@
   "babel": {
     "presets": [
       "@babel/preset-env",
-      "@babel/preset-react"
+      "@babel/preset-react",
+      "@babel/preset-typescript",
+      "@babel/preset-react-native"
     ]
   },
   "env": {
     "test": {
       "presets": [
         "@babel/preset-env",
-        "@babel/preset-react"
+        "@babel/preset-react",
+        "@babel/preset-typescript",
+        "@babel/preset-react-native"
       ]
     }
   },
