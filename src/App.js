@@ -7,13 +7,26 @@ import AddBook from './components/AddBook';
 import EditBook from './components/EditBook';
 import ReadingGoals from './components/ReadingGoals';
 import { StyleSheet, View, Switch, Text } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import { StatusBar } from 'expo-status-bar';
 
 const Stack = createStackNavigator();
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   const toggleSwitch = () => setIsDarkMode(previousState => !previousState);
+
+  if (!isReady) {
+    return (
+      <AppLoading
+        startAsync={loadResourcesAsync}
+        onFinish={() => setIsReady(true)}
+        onError={handleLoadingError}
+      />
+    );
+  }
 
   return (
     <NavigationContainer>
@@ -36,6 +49,7 @@ function App() {
           <Stack.Screen name="ReadingGoals" component={ReadingGoals} />
         </Stack.Navigator>
       </View>
+      <StatusBar style="auto" />
     </NavigationContainer>
   );
 }
@@ -68,5 +82,14 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
+
+async function loadResourcesAsync() {
+  // Load any resources or data that we need prior to rendering the app
+}
+
+function handleLoadingError(error) {
+  // Handle the loading error
+  console.warn(error);
+}
 
 export default App;
