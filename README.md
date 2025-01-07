@@ -55,6 +55,21 @@ To run the unit tests for the components, use the following command:
 npm test
 ```
 
+## Linting and Code Formatting
+
+To run linting and code formatting checks, use the following commands:
+```
+npm run lint
+npm run format:check
+```
+
+## Deploying to Staging Environment
+
+To deploy the application to a staging environment, use the following command:
+```
+npm run deploy:staging
+```
+
 ## Contributing Guidelines
 
 We welcome contributions to improve the app. Please follow these guidelines when contributing:

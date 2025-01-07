@@ -6,9 +6,7 @@ import BookDetails from './components/BookDetails';
 import AddBook from './components/AddBook';
 import EditBook from './components/EditBook';
 import ReadingGoals from './components/ReadingGoals';
-import { StyleSheet, View, Switch, Text } from 'react-native';
-import AppLoading from 'expo-app-loading';
-import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Switch, Text, ActivityIndicator, StatusBar } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -20,11 +18,9 @@ function App() {
 
   if (!isReady) {
     return (
-      <AppLoading
-        startAsync={loadResourcesAsync}
-        onFinish={() => setIsReady(true)}
-        onError={handleLoadingError}
-      />
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
     );
   }
 
@@ -81,15 +77,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff',
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
-
-async function loadResourcesAsync() {
-  // Load any resources or data that we need prior to rendering the app
-}
-
-function handleLoadingError(error) {
-  // Handle the loading error
-  console.warn(error);
-}
 
 export default App;
