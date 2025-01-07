@@ -21,8 +21,25 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-
+
       - name: Clean install dependencies
         run: npm ci
 
+      - name: Run linting
+        run: npm run lint
+
+      - name: Run code formatting checks
+        run: npm run format:check
+
       - name: Run CI script
         run: npm run ci --legacy-peer-deps
+
+      - name: Deploy to staging environment
+        run: npm run deploy:staging

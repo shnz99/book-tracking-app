@@ -6,7 +6,8 @@
     "start": "webpack serve --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
     "test": "jest",
-    "ci": "npm install --legacy-peer-deps && npm audit && npm test && npm run build"
+    "ci": "npm test && npm run build",
+    "prebuild": "rimraf dist"
   },
   "dependencies": {
     "@react-navigation/native": "^7.0.14",

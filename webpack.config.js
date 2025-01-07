@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -21,6 +22,9 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
+            options: {
+              plugins: ['@babel/plugin-syntax-dynamic-import'],
+            },
           },
         },
         {
@@ -51,6 +55,10 @@ module.exports = (env, argv) => {
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(argv.mode),
       }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: false,
+      }),
     ],
     devtool: isProduction ? 'source-map' : 'eval-source-map',
     devServer: {
@@ -63,6 +71,7 @@ module.exports = (env, argv) => {
       splitChunks: {
         chunks: 'all',
       },
+      usedExports: true,
     },
   };
 };
