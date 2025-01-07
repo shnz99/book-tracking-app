@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { RNCamera } from 'react-native-camera';
 import './styles/AddBook.css';
 
 const AddBook = ({ onAddBook }) => {
@@ -6,6 +7,7 @@ const AddBook = ({ onAddBook }) => {
   const [author, setAuthor] = useState('');
   const [description, setDescription] = useState('');
   const [barcode, setBarcode] = useState('');
+  const [scanning, setScanning] = useState(false);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -37,6 +39,15 @@ const AddBook = ({ onAddBook }) => {
     setAuthor('');
     setDescription('');
     setBarcode('');
+  };
+
+  const handleBarcodeScan = (barcodeData) => {
+    setBarcode(barcodeData);
+    setScanning(false);
+  };
+
+  const startScanning = () => {
+    setScanning(true);
   };
 
   return (
@@ -80,9 +91,18 @@ const AddBook = ({ onAddBook }) => {
             value={barcode}
             onChange={handleBarcodeChange}
           />
+          <button type="button" onClick={startScanning}>
+            Scan Barcode
+          </button>
         </div>
         <button type="submit">Add Book</button>
       </form>
+      {scanning && (
+        <RNCamera
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          onBarCodeRead={(e) => handleBarcodeScan(e.data)}
+        />
+      )}
     </div>
   );
 };
