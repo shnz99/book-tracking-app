@@ -24,6 +24,7 @@ module.exports = (env, argv) => {
             loader: 'babel-loader',
             options: {
               plugins: ['@babel/plugin-syntax-dynamic-import'],
+              presets: ['@babel/preset-react'],
             },
           },
         },
