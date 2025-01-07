@@ -7,7 +7,8 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   return {
-    entry: './src/index.js',
+    mode: argv.mode,
+    entry: './src/App.js',
     output: {
       filename: 'bundle.[contenthash].js',
       path: path.resolve(__dirname, 'dist'),
