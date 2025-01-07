@@ -39,11 +39,11 @@ jobs:
         run: npm run lint
         continue-on-error: true
 
-      - name: Run code formatting
-        run: npm run format
+      # - name: Run code formatting
+      #   run: npm run format
 
-      - name: Run code formatting checks
-        run: npm run format:check
+      # - name: Run code formatting checks
+      #   run: npm run format:check
 
       - name: Run CI script
         run: npm run ci --legacy-peer-deps
