@@ -31,46 +31,29 @@ This mobile app allows users to track and manage the books they have read. Users
 
 The app will be running on `http://localhost:3000`.
 
+## Custom Build Script
+
+The project uses a custom build script with `webpack` to automate the build process. The build script is defined in the `package.json` file under the "scripts" section:
+```json
+"scripts": {
+  "build": "webpack --config webpack.config.js"
+}
+```
+To run the custom build script, use the following command:
+```
+npm run build
+```
+
+## Continuous Integration (CI) Pipeline
+
+The project is set up with a CI pipeline using GitHub Actions. The CI pipeline is defined in the `.github/workflows/ci.yml` file. It automates the build process, runs tests, and ensures consistency across different environments. The CI pipeline includes a step to run `npm audit` to check for security vulnerabilities.
+
 ## Running Tests
 
 To run the unit tests for the components, use the following command:
 ```
 npm test
 ```
-
-## Running the App on a Mobile Device
-
-To run the app on a mobile device using Expo, follow these steps:
-
-1. Install the Expo CLI:
-   ```
-   npm install -g expo-cli
-   ```
-2. Start the Expo development server:
-   ```
-   expo start
-   ```
-3. Download the Expo Go app on your mobile device from the App Store (iOS) or Google Play Store (Android).
-4. Open the Expo Go app and scan the QR code displayed in the terminal or on the Expo development server page.
-
-## Building the App for Android and iOS
-
-To build the app for Android and iOS, follow these steps:
-
-1. Install the Expo CLI if you haven't already:
-   ```
-   npm install -g expo-cli
-   ```
-2. Build the app for Android:
-   ```
-   expo build:android
-   ```
-3. Build the app for iOS:
-   ```
-   expo build:ios
-   ```
-
-Follow the instructions provided by Expo to complete the build process and obtain the APK (Android) or IPA (iOS) files.
 
 ## Contributing Guidelines
 
