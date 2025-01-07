@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 const Signup = ({ navigation }) => {
@@ -21,6 +21,16 @@ const Signup = ({ navigation }) => {
   };
 
   const handleSignup = async () => {
+    if (!email) {
+      Alert.alert('Validation Error', 'Email is required.');
+      return;
+    }
+
+    if (!password) {
+      Alert.alert('Validation Error', 'Password is required.');
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;

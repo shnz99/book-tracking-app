@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 
 const EditBook = ({ books, onUpdateBook }) => {
   const route = useRoute();
@@ -28,6 +28,11 @@ const EditBook = ({ books, onUpdateBook }) => {
   };
 
   const handleSubmit = () => {
+    if (!title || !author || !description) {
+      Alert.alert('Validation Error', 'Please fill in all required fields.');
+      return;
+    }
+
     const updatedBook = {
       ...book,
       title,

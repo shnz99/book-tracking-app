@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, FlatList, TouchableOpacity, Alert } from 'react-native';
 
 const BookList = ({ navigation }) => {
   const [books, setBooks] = useState([]);
@@ -14,7 +14,20 @@ const BookList = ({ navigation }) => {
   );
 
   const handleDelete = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
+    Alert.alert(
+      "Delete Book",
+      "Are you sure you want to delete this book?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => setBooks(books.filter((book) => book.id !== id))
+        }
+      ]
+    );
   };
 
   const renderItem = ({ item }) => (

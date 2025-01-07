@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
 
 const BookDetails = ({ books }) => {
   const route = useRoute();
@@ -15,11 +15,21 @@ const BookDetails = ({ books }) => {
   };
 
   const handleRatingChange = (text) => {
-    setRating(text);
+    const numericValue = parseInt(text, 10);
+    if (isNaN(numericValue) || numericValue < 0 || numericValue > 5) {
+      Alert.alert('Validation Error', 'Please enter a valid rating between 0 and 5.');
+      return;
+    }
+    setRating(numericValue);
   };
 
   const handleProgressChange = (text) => {
-    setProgress(text);
+    const numericValue = parseInt(text, 10);
+    if (isNaN(numericValue) || numericValue < 0 || numericValue > 100) {
+      Alert.alert('Validation Error', 'Please enter a valid progress percentage between 0 and 100.');
+      return;
+    }
+    setProgress(numericValue);
   };
 
   return (

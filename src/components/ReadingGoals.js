@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, FlatList } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, FlatList, Alert } from 'react-native';
 
 const ReadingGoals = () => {
   const [goals, setGoals] = useState([]);
@@ -18,6 +18,11 @@ const ReadingGoals = () => {
   };
 
   const handleProgressChange = (goal, text) => {
+    const numericValue = parseInt(text, 10);
+    if (isNaN(numericValue) || numericValue < 0 || numericValue > 100) {
+      Alert.alert('Validation Error', 'Please enter a valid progress percentage between 0 and 100.');
+      return;
+    }
     setProgress({
       ...progress,
       [goal]: text,

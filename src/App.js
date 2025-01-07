@@ -9,7 +9,7 @@ import EditBook from './components/EditBook';
 import ReadingGoals from './components/ReadingGoals';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, Alert } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +29,14 @@ function App() {
   }, []);
 
   if (initializing) return <ActivityIndicator size="large" color="#0000ff" />;
+
+  if (!user) {
+    Alert.alert(
+      "Authentication Error",
+      "User is not authenticated. Please log in.",
+      [{ text: "OK" }]
+    );
+  }
 
   return (
     <NavigationContainer>

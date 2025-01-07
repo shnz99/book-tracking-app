@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RNCamera } from 'react-native-camera';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 
 const AddBook = ({ onAddBook }) => {
   const [title, setTitle] = useState('');
@@ -26,6 +26,11 @@ const AddBook = ({ onAddBook }) => {
   };
 
   const handleSubmit = () => {
+    if (!title || !author || !description) {
+      Alert.alert('Validation Error', 'Please fill in all required fields.');
+      return;
+    }
+
     const newBook = {
       id: Date.now(),
       title,
@@ -41,6 +46,11 @@ const AddBook = ({ onAddBook }) => {
   };
 
   const handleBarcodeScan = (barcodeData) => {
+    if (!barcodeData) {
+      Alert.alert('Barcode Error', 'Failed to scan the barcode. Please try again.');
+      setScanning(false);
+      return;
+    }
     setBarcode(barcodeData);
     setScanning(false);
   };
