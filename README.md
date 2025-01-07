@@ -38,6 +38,40 @@ To run the unit tests for the components, use the following command:
 npm test
 ```
 
+## Running the App on a Mobile Device
+
+To run the app on a mobile device using Expo, follow these steps:
+
+1. Install the Expo CLI:
+   ```
+   npm install -g expo-cli
+   ```
+2. Start the Expo development server:
+   ```
+   expo start
+   ```
+3. Download the Expo Go app on your mobile device from the App Store (iOS) or Google Play Store (Android).
+4. Open the Expo Go app and scan the QR code displayed in the terminal or on the Expo development server page.
+
+## Building the App for Android and iOS
+
+To build the app for Android and iOS, follow these steps:
+
+1. Install the Expo CLI if you haven't already:
+   ```
+   npm install -g expo-cli
+   ```
+2. Build the app for Android:
+   ```
+   expo build:android
+   ```
+3. Build the app for iOS:
+   ```
+   expo build:ios
+   ```
+
+Follow the instructions provided by Expo to complete the build process and obtain the APK (Android) or IPA (iOS) files.
+
 ## Contributing Guidelines
 
 We welcome contributions to improve the app. Please follow these guidelines when contributing:
