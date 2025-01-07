@@ -14,11 +14,11 @@
     "glob": "^9.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-native": "^0.68.0",
+    "react-native": "^0.76.5",
     "react-native-camera": "4.0.0",
     "react-native-gesture-handler": "1.10.3",
     "react-native-progress": "5.0.0",
-    "react-native-reanimated": "2.2.0",
+    "react-native-reanimated": "^2.17.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "3.4.0",
     "react-native-walkthrough-tooltip": "1.2.0",
@@ -39,9 +39,9 @@
     "html-webpack-plugin": "5.3.1",
     "jest": "27.0.6",
     "style-loader": "3.0.0",
-    "webpack": "5.44.0",
-    "webpack-cli": "4.7.2",
-    "webpack-dev-server": "4.0.0"
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^4.15.2"
   },
   "private": true
 }
