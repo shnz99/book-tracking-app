@@ -7,7 +7,8 @@
     "build": "webpack --config webpack.config.js",
     "test": "jest",
     "ci": "npm test && npm run build",
-    "prebuild": "rimraf dist"
+    "prebuild": "rimraf dist",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-navigation/native": "^7.0.14",
@@ -49,7 +50,9 @@
     "webpack": "^5.97.1",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0"
+    "webpack-dev-server": "^5.2.0",
+    "eslint": "^8.32.0",
+    "eslint-plugin-react": "^7.32.0"
   },
   "babel": {
     "presets": ["@babel/preset-env", "@babel/preset-react"]
