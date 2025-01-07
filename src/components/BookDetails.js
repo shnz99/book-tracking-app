@@ -1,57 +1,115 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import './styles/BookDetails.css';
+import { useRoute } from '@react-navigation/native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 const BookDetails = ({ books }) => {
-  const { id } = useParams();
+  const route = useRoute();
+  const { id } = route.params;
   const book = books.find((book) => book.id === id);
   const [notes, setNotes] = useState(book.notes || '');
   const [rating, setRating] = useState(book.rating || 0);
   const [progress, setProgress] = useState(book.progress || 0);
 
-  const handleNotesChange = (event) => {
-    setNotes(event.target.value);
+  const handleNotesChange = (text) => {
+    setNotes(text);
   };
 
-  const handleRatingChange = (event) => {
-    setRating(event.target.value);
+  const handleRatingChange = (text) => {
+    setRating(text);
   };
 
-  const handleProgressChange = (event) => {
-    setProgress(event.target.value);
+  const handleProgressChange = (text) => {
+    setProgress(text);
   };
 
   return (
-    <div className="book-details">
-      <h1>{book.title}</h1>
-      <p>{book.author}</p>
-      <p>{book.description}</p>
-      <div className="notes-section">
-        <h2>Notes</h2>
-        <textarea value={notes} onChange={handleNotesChange} />
-      </div>
-      <div className="rating-section">
-        <h2>Rating</h2>
-        <input
-          type="number"
-          value={rating}
-          onChange={handleRatingChange}
-          min="0"
-          max="5"
+    <View style={styles.container}>
+      <Text style={styles.title}>{book.title}</Text>
+      <Text style={styles.author}>{book.author}</Text>
+      <Text style={styles.description}>{book.description}</Text>
+      <View style={styles.notesSection}>
+        <Text style={styles.sectionTitle}>Notes</Text>
+        <TextInput
+          style={styles.textArea}
+          value={notes}
+          onChangeText={handleNotesChange}
+          multiline
         />
-      </div>
-      <div className="progress-section">
-        <h2>Reading Progress</h2>
-        <input
-          type="number"
-          value={progress}
-          onChange={handleProgressChange}
-          min="0"
-          max="100"
+      </View>
+      <View style={styles.ratingSection}>
+        <Text style={styles.sectionTitle}>Rating</Text>
+        <TextInput
+          style={styles.input}
+          value={rating.toString()}
+          onChangeText={handleRatingChange}
+          keyboardType="numeric"
+          maxLength={1}
         />
-      </div>
-    </div>
+      </View>
+      <View style={styles.progressSection}>
+        <Text style={styles.sectionTitle}>Reading Progress</Text>
+        <TextInput
+          style={styles.input}
+          value={progress.toString()}
+          onChangeText={handleProgressChange}
+          keyboardType="numeric"
+          maxLength={3}
+        />
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f9f9f9',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  author: {
+    fontSize: 18,
+    color: '#666',
+    marginBottom: 10,
+  },
+  description: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 20,
+  },
+  notesSection: {
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  textArea: {
+    height: 100,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 4,
+    padding: 10,
+    textAlignVertical: 'top',
+  },
+  ratingSection: {
+    marginBottom: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 4,
+    padding: 10,
+  },
+  progressSection: {
+    marginBottom: 20,
+  },
+});
 
 export default BookDetails;

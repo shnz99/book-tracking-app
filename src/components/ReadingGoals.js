@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import './styles/ReadingGoals.css';
+import { View, Text, TextInput, Button, StyleSheet, FlatList } from 'react-native';
 
 const ReadingGoals = () => {
   const [goals, setGoals] = useState([]);
   const [newGoal, setNewGoal] = useState('');
   const [progress, setProgress] = useState({});
 
-  const handleNewGoalChange = (event) => {
-    setNewGoal(event.target.value);
+  const handleNewGoalChange = (text) => {
+    setNewGoal(text);
   };
 
   const handleAddGoal = () => {
@@ -17,42 +17,92 @@ const ReadingGoals = () => {
     }
   };
 
-  const handleProgressChange = (goal, event) => {
+  const handleProgressChange = (goal, text) => {
     setProgress({
       ...progress,
-      [goal]: event.target.value,
+      [goal]: text,
     });
   };
 
   return (
-    <div className="reading-goals">
-      <h1>Reading Goals</h1>
-      <div className="add-goal">
-        <input
-          type="text"
+    <View style={styles.container}>
+      <Text style={styles.title}>Reading Goals</Text>
+      <View style={styles.addGoal}>
+        <TextInput
+          style={styles.input}
           value={newGoal}
-          onChange={handleNewGoalChange}
+          onChangeText={handleNewGoalChange}
           placeholder="Enter a new goal"
         />
-        <button onClick={handleAddGoal}>Add Goal</button>
-      </div>
-      <ul>
-        {goals.map((goal, index) => (
-          <li key={index}>
-            <span>{goal}</span>
-            <input
-              type="number"
-              value={progress[goal] || 0}
-              onChange={(event) => handleProgressChange(goal, event)}
-              min="0"
-              max="100"
+        <Button title="Add Goal" onPress={handleAddGoal} />
+      </View>
+      <FlatList
+        data={goals}
+        renderItem={({ item }) => (
+          <View style={styles.goalItem}>
+            <Text style={styles.goalText}>{item}</Text>
+            <TextInput
+              style={styles.progressInput}
+              value={progress[item] || '0'}
+              onChangeText={(text) => handleProgressChange(item, text)}
+              keyboardType="numeric"
+              maxLength={3}
             />
-            <span>%</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+            <Text style={styles.percentage}>%</Text>
+          </View>
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f9f9f9',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  addGoal: {
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingHorizontal: 10,
+    marginRight: 10,
+  },
+  goalItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  goalText: {
+    flex: 1,
+    fontSize: 18,
+  },
+  progressInput: {
+    width: 50,
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingHorizontal: 10,
+    textAlign: 'center',
+  },
+  percentage: {
+    fontSize: 18,
+    marginLeft: 5,
+  },
+});
 
 export default ReadingGoals;

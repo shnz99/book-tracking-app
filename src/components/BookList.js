@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './styles/BookList.css';
+import { View, Text, TextInput, Button, FlatList, TouchableOpacity } from 'react-native';
 
-const BookList = () => {
+const BookList = ({ navigation }) => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
+  const handleSearch = (text) => {
+    setSearchTerm(text);
   };
 
   const filteredBooks = books.filter((book) =>
@@ -18,26 +17,65 @@ const BookList = () => {
     setBooks(books.filter((book) => book.id !== id));
   };
 
+  const renderItem = ({ item }) => (
+    <View style={styles.bookItem}>
+      <TouchableOpacity onPress={() => navigation.navigate('BookDetails', { id: item.id })}>
+        <Text style={styles.bookTitle}>{item.title}</Text>
+      </TouchableOpacity>
+      <Button title="Delete" onPress={() => handleDelete(item.id)} />
+    </View>
+  );
+
   return (
-    <div className="book-list">
-      <h1>My Library</h1>
-      <input
-        type="text"
+    <View style={styles.container}>
+      <Text style={styles.header}>My Library</Text>
+      <TextInput
+        style={styles.searchInput}
         placeholder="Search books..."
         value={searchTerm}
-        onChange={handleSearch}
+        onChangeText={handleSearch}
       />
-      <ul>
-        {filteredBooks.map((book) => (
-          <li key={book.id}>
-            <Link to={`/book/${book.id}`}>{book.title}</Link>
-            <button onClick={() => handleDelete(book.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-      <Link to="/add-book">Add Book</Link>
-    </div>
+      <FlatList
+        data={filteredBooks}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+      />
+      <Button title="Add Book" onPress={() => navigation.navigate('AddBook')} />
+    </View>
   );
+};
+
+const styles = {
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f9f9f9',
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  searchInput: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+  },
+  bookItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  bookTitle: {
+    fontSize: 18,
+    color: '#4CAF50',
+  },
 };
 
 export default BookList;

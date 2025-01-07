@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RNCamera } from 'react-native-camera';
-import './styles/AddBook.css';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 const AddBook = ({ onAddBook }) => {
   const [title, setTitle] = useState('');
@@ -9,24 +9,23 @@ const AddBook = ({ onAddBook }) => {
   const [barcode, setBarcode] = useState('');
   const [scanning, setScanning] = useState(false);
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
+  const handleTitleChange = (text) => {
+    setTitle(text);
   };
 
-  const handleAuthorChange = (event) => {
-    setAuthor(event.target.value);
+  const handleAuthorChange = (text) => {
+    setAuthor(text);
   };
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
+  const handleDescriptionChange = (text) => {
+    setDescription(text);
   };
 
-  const handleBarcodeChange = (event) => {
-    setBarcode(event.target.value);
+  const handleBarcodeChange = (text) => {
+    setBarcode(text);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     const newBook = {
       id: Date.now(),
       title,
@@ -51,60 +50,95 @@ const AddBook = ({ onAddBook }) => {
   };
 
   return (
-    <div className="add-book">
-      <h1>Add a New Book</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={handleTitleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="author">Author</label>
-          <input
-            type="text"
-            id="author"
-            value={author}
-            onChange={handleAuthorChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={handleDescriptionChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="barcode">Barcode</label>
-          <input
-            type="text"
-            id="barcode"
-            value={barcode}
-            onChange={handleBarcodeChange}
-          />
-          <button type="button" onClick={startScanning}>
-            Scan Barcode
-          </button>
-        </div>
-        <button type="submit">Add Book</button>
-      </form>
+    <View style={styles.container}>
+      <Text style={styles.title}>Add a New Book</Text>
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Title</Text>
+        <TextInput
+          style={styles.input}
+          value={title}
+          onChangeText={handleTitleChange}
+          required
+        />
+      </View>
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Author</Text>
+        <TextInput
+          style={styles.input}
+          value={author}
+          onChangeText={handleAuthorChange}
+          required
+        />
+      </View>
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Description</Text>
+        <TextInput
+          style={styles.textArea}
+          value={description}
+          onChangeText={handleDescriptionChange}
+          multiline
+          required
+        />
+      </View>
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Barcode</Text>
+        <TextInput
+          style={styles.input}
+          value={barcode}
+          onChangeText={handleBarcodeChange}
+        />
+        <Button title="Scan Barcode" onPress={startScanning} />
+      </View>
+      <Button title="Add Book" onPress={handleSubmit} />
       {scanning && (
         <RNCamera
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          style={styles.camera}
           onBarCodeRead={(e) => handleBarcodeScan(e.data)}
         />
       )}
-    </div>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f9f9f9',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  formGroup: {
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 18,
+    color: '#666',
+    marginBottom: 5,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 4,
+    padding: 10,
+  },
+  textArea: {
+    height: 100,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 4,
+    padding: 10,
+    textAlignVertical: 'top',
+  },
+  camera: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default AddBook;
