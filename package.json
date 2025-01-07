@@ -8,7 +8,9 @@
     "test": "jest",
     "ci": "npm test && npm run build",
     "prebuild": "rimraf dist",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@react-navigation/native": "^7.0.14",
