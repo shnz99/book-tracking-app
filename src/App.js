@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BookList from './components/BookList';
 import BookDetails from './components/BookDetails';
 import AddBook from './components/AddBook';
-import EditBook from './components/EditBook';
 import ReadingGoals from './components/ReadingGoals';
 import { StyleSheet, View, Switch, Text, ActivityIndicator, StatusBar } from 'react-native';
 
@@ -41,7 +40,6 @@ function App() {
           <Stack.Screen name="BookList" component={BookList} />
           <Stack.Screen name="BookDetails" component={BookDetails} />
           <Stack.Screen name="AddBook" component={AddBook} />
-          <Stack.Screen name="EditBook" component={EditBook} />
           <Stack.Screen name="ReadingGoals" component={ReadingGoals} />
         </Stack.Navigator>
       </View>
