@@ -63,6 +63,11 @@ npm run lint
 npm run format:check
 ```
 
+To format the code using Prettier, use the following command:
+```
+npm run format
+```
+
 ## Deploying to Staging Environment
 
 To deploy the application to a staging environment, use the following command:

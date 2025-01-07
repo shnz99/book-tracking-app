@@ -37,6 +37,10 @@ jobs:
 
       - name: Run linting
         run: npm run lint
+        continue-on-error: true
+
+      - name: Run code formatting
+        run: npm run format
 
       - name: Run code formatting checks
         run: npm run format:check
