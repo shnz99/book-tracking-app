@@ -25,4 +25,4 @@ jobs:
         run: npm ci
 
       - name: Run CI script
-        run: npm run ci
+        run: npm run ci --legacy-peer-deps
